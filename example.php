@@ -1,5 +1,4 @@
 <?php
-	ini_set('display_errors',1);
 	spl_autoload_register(function ($class) {
 		require_once 'includes/' . $class . '.class.php';
 	});
