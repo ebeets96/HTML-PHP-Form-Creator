@@ -88,10 +88,11 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Form Classes Example</title>
-<link href="bootstrap/bootstrap.min.css" rel="stylesheet" />
-<link href="style.css" rel="stylesheet" />
+	<meta charset="UTF-8">
+	<title>Form Classes Example</title>
+	<link href="bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="style.css" rel="stylesheet" />
+	<script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
 	<div class="container">
