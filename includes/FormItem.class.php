@@ -1,6 +1,6 @@
 <?php
 	abstract class FormItem {
-		protected $id,$name,$label,$classes,$attrs,$required,$validationMethod,$errorMessage;
+		protected $id,$name,$label,$hint,$classes,$attrs,$required,$validationMethod,$errorMessage;
 		
 		public function __construct($name="",$label="",$classes=array(),$id=""){
 			$this->setId($id);
@@ -28,6 +28,14 @@
 		
 		public function getLabel(){
 			return $this->label;
+		}
+		
+		public function setHint($hint){
+			$this->hint = $hint;	
+		}
+		
+		public function getHint(){
+			return $this->hint;
 		}
 		
 		public function setName($name){
