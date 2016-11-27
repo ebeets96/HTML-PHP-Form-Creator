@@ -81,7 +81,7 @@
 		// Here the programmer can do their post submit processing
 		// and assume that everything has been validated correctly
 		// each field can be accessed by the getValue() function:
-		$form->setSuccess("Thank you " . $nameField->getValue() . " for submitting this form.  Absolutely nothing is going to happen, but with a little bit more programming, it could!");
+		$form->setSuccess("Thank you " . $nameField->getValue() . " for submitting this form.  Absolutely nothing is going to happen, but with a little bit more programming, it could! <a href=\"index.php\">Submit again</a>");
 	}
 		
 ?>
