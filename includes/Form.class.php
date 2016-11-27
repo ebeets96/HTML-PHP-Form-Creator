@@ -19,6 +19,12 @@
 			$this->form_items[] = $item;
 		}
 		
+		public function addFormItems(array $items){
+			foreach($items as $item){
+				$this->form_items[] = $item;
+			}
+		}
+		
 		public function getFormHTML(){
 			if(empty($this->success)){
 				$html = $this->getError();
@@ -36,7 +42,7 @@
 					}
 					if(get_class($item)!="Hidden" && get_class($item)!="HTML" && $item->getAttr("hide_label")!="true" ){
 						$html .= "\t<div class=\"form-group" . $validationClasses . "\">\n";
-						$html .= "\t\t<label for=\"" . $item->getName() . "\">" . $item->getLabel() . "</label>\n";
+						$html .= "\t\t<label for=\"" . $item->getName() . "\">" . $item->getLabel() . " <em>" . $item->getHint() . "</em></label>\n";
 					} else if ($item->getAttr("hide_label")=="true"){
 						$html .= "\t<div class=\"form-group" . $validationClasses . "\">\n";	
 					}
