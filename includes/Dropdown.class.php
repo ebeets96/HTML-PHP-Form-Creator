@@ -3,7 +3,12 @@
 		
 		private $options;
 		
-		public function addOption($text, $value){
+		public function addOption($text, $value=''){
+			if(trim($value)=='')
+				$value = preg_replace('/\s+/', '', $text);
+			if(isset($this->options[$value]))
+				die("An element with that value has already been added");	
+				
 				$this->options[$value] = $text;
 		}
 		

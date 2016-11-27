@@ -3,10 +3,16 @@
 		
 		private $options,$selectedValue;
 		
-		public function addOption($text, $value,$selected=false){
-				$this->options[$value] = $text;
-				if($selected)
-					$this->setSelected($value);
+		public function addOption($text, $value='',$selected=false){
+			if(trim($value)=='')
+				$value = preg_replace('/\s+/', '', $text);
+				
+			if(isset($this->options[$value]))
+				die("An element with that value has already been added");	
+				
+			$this->options[$value] = $text;
+			if($selected)
+				$this->setSelected($value);
 		}
 		
 		public function setSelected($value){
@@ -22,8 +28,7 @@
 					$returnvalue .= " checked ";
 				}
 				$returnvalue .= "name=\"" . $this->getName() . "\"" . $this->getAttrs() . " value=\"" . $value . "\"> ";
-				$returnvalue .= $text . "</label>";	
-				$i++;
+				$returnvalue .= $text . "</label>";
 			}
 			return $returnvalue;
 		}
@@ -34,6 +39,8 @@
 		}
 		
 		public function validate(){
+			if(!isset($_POST[$this->getName()]))
+				return false;
 			$this->selectedValue = $_POST[$this->getName()];
 			if( $this->getRequired() && $this->notFilled() ){
 				$this->setErrorMessage("This is a required field.");

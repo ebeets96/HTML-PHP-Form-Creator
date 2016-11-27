@@ -4,14 +4,14 @@
 		private $form_title,$action,$method,$form_items,$submitted,$errorMessage,$success;
 		
 		public function __construct($title,$action=null,$class=array()){
-			$this->form_title = $title;
+			$this->form_title = preg_replace('/\s+/', '', $title);
 			if($action==null)
 				$this->action = $_SERVER['PHP_SELF'];
 			else
 				$this->action = $action;
 			$this->method = "post";
 			$this->form_items = array();
-			$this->submitted = isset($_POST[$title]);
+			$this->submitted = isset($_POST[$this->form_title]);
 			$this->success = "";
 		}
 		
@@ -19,8 +19,8 @@
 			$this->form_items[] = $item;
 		}
 		
-		public function addFormItems(array $items){
-			foreach($items as $item){
+		public function addFormItems($items){
+			foreach(func_get_args() as $item){
 				$this->form_items[] = $item;
 			}
 		}

@@ -3,17 +3,19 @@
 		
 		private $options;
 		
-		public function addOption($text, $value){
-				$this->options[$value] = $text;
+		public function addOption($text, $value=''){
+			if(trim($value)=='')
+				$value = preg_replace('/\s+/', '', $text);
+			if(isset($this->options[$value]))
+				die("An element with that value has already been added");	
+			$this->options[$value] = $text;
 		}
 		
 		public function getFieldHTML () {
-			$returnvalue = '<div class="checkbox">';
+			$returnvalue = '';
 			foreach($this->options as $value=>$option){
-				$returnvalue .= '<label class="checkbox-inline"><input type="checkbox" name="' . $this->getName() . '[]" ' . $this->getAttrs() . ' value="' . $value . '">' . $option . '</label>';	
+				$returnvalue .= '<div class="checkbox"><label class="checkbox-inline"><input type="checkbox" name="' . $this->getName() . '[]" ' . $this->getAttrs() . ' value="' . $value . '">' . $option . '</label></div>';
 			}
-			
-			$returnvalue .= "</div>";
 			return $returnvalue;
 		}
 		
