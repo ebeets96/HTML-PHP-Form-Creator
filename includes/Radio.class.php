@@ -34,18 +34,16 @@
 		}
 		
 		protected function notFilled(){
-			$bools = array("false","true");
-			return !isset($this->options[$_POST[$this->getName()]]);
+			return !isset($_POST[$this->getName()]) && !isset($this->options[$_POST[$this->getName()]]);
 		}
 		
 		public function validate(){
-			if(!isset($_POST[$this->getName()]))
-				return false;
-			$this->selectedValue = $_POST[$this->getName()];
-			if( $this->getRequired() && $this->notFilled() ){
-				$this->setErrorMessage("This is a required field.");
-				return false;
+			$requiredValidation = parent::validate();
+			
+			if($this->getRequired() && $requiredValidation) {
+				$requiredValidation = $requiredValidation && in_array($this->getValue(), $options);	
 			}
-			return true;
+		
+			return $requiredValidation;
 		}
 	}

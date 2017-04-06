@@ -14,10 +14,9 @@
 		public function validate() {
 			$requiredValidation = parent::validate();
 			$file = $_FILES[$this->getName()];
-			
-			if($this->getRequired() || $file["error"] != 4) {
-				if($file["error"] != 0) {
-					$this->setErrorMessage("An error occured with your file upload: " + $file["error"]);
+			if($this->getRequired() || !in_array(UPLOAD_ERR_NO_FILE, $file["error"])) {
+				if(!in_array(UPLOAD_ERR_OK, $file["error"])) {
+					$this->setErrorMessage("An error occured with your file upload.");
 					return false;
 				}
 				
@@ -52,6 +51,6 @@
 		}
 		
 		protected function notFilled() {
-			return $_FILES[$this->getName()]["error"] == 4;
+			return in_array(UPLOAD_ERR_NO_FILE, $_FILES[$this->getName()]["error"]);
 		}
 	}
