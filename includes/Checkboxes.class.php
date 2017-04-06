@@ -12,10 +12,11 @@
 		}
 		
 		public function getFieldHTML () {
-			$returnvalue = '';
+			$returnvalue = '<div class="checkbox">';
 			foreach($this->options as $value=>$option){
-				$returnvalue .= '<div class="checkbox"><label class="checkbox-inline"><input type="checkbox" name="' . $this->getName() . '[]" ' . $this->getAttrs() . ' value="' . $value . '">' . $option . '</label></div>';
+				$returnvalue .= '<label class="checkbox-inline"><input type="checkbox" name="' . $this->getName() . '[]" ' . $this->getAttrs() . ' value="' . $value . '">' . $option . '</label>';
 			}
+			$returnvalue .= "</div>";
 			return $returnvalue;
 		}
 		

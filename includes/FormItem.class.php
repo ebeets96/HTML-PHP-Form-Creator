@@ -7,7 +7,7 @@
 			$this->setClasses($classes);
 			$this->addClass("form-control");
 			$this->attrs = array();
-			$this->setName($name);
+			$this->setName(preg_replace('/\s+/', '', $name));
 			$this->setLabel($label);
 			$this->setRequired(false);
 			$this->validationMethod = "none";
